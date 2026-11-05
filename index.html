@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#5142bf" />
+  <meta name="description" content="Learn. Teach. Connect. Repeat. Find your next skill partner with Infinite Skill Loop." />
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png" />
+  <link rel="apple-touch-icon" href="icons/icon-192.png" />
+  <title>Infinite Skill Loop — Demo</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="brand-mark">∞</div>
+      <div class="brand-name">Infinite Skill<br><span>Loop</span></div>
+      <p class="tagline">Learn. Teach. Connect. Repeat.</p>
+      <nav>
+        <button class="nav-btn active" data-page="home">⌂ <span>Home</span></button>
+        <button class="nav-btn" data-page="explore">⌕ <span>Explore skills</span></button>
+        <button class="nav-btn" data-page="loop">↻ <span>My Loop</span><b id="request-count" class="nav-count">2</b></button>
+        <button class="nav-btn" data-page="rank">♛ <span>Community rank</span></button>
+        <button class="nav-btn" data-page="profile">◉ <span>My profile</span></button>
+      </nav>
+      <div class="sidebar-bottom">
+        <div class="mini-avatar">S</div>
+        <div><strong>Student Demo</strong><small>Demo High School</small></div>
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <div>
+          <div class="eyebrow">STUDENT SKILL NETWORK</div>
+          <h1 id="page-title">Your learning loop</h1>
+        </div>
+        <div class="top-actions"><span class="campus-pill">⌂ Demo High School</span><button id="pwa-install-button" class="install-app-btn" hidden>＋ Install app</button><button class="icon-btn" title="Notifications">♧</button></div>
+      </header>
+
+      <section id="page-home" class="page active">
+        <div class="welcome-panel">
+          <div>
+            <p class="eyebrow light">YOUR NEXT SKILL STARTS HERE</p>
+            <h2>Knowledge grows<br>when it keeps moving.</h2>
+            <p>Find someone who can teach what you want to learn — and share what you know.</p>
+            <button class="primary-btn" data-goto="explore">Find a skill partner <span>→</span></button>
+          </div>
+          <div class="loop-art" aria-hidden="true"><div class="orbit orbit-one"></div><div class="orbit orbit-two"></div><div class="orbit-core">∞</div><span class="orbit-label l1">LEARN</span><span class="orbit-label l2">TEACH</span><span class="orbit-label l3">GROW</span></div>
+        </div>
+
+        <div class="section-heading"><div><h2>Made for your interests</h2><p>Posts and people connected to your skills and free time.</p></div><button class="text-btn" data-goto="explore">Explore all →</button></div>
+        <div class="interest-row"><span class="interest-chip selected">Coding</span><span class="interest-chip">Graphic design</span><span class="interest-chip">Mathematics</span><span class="interest-chip">Video editing</span><span class="interest-chip">+ Add interest</span></div>
+        <div class="content-grid">
+          <div class="feed-column">
+            <article class="post-card">
+              <div class="post-head"><div class="avatar purple">A</div><div><strong>Arjun K.</strong><small>Web development · 2 hours ago</small></div><span class="post-tag">PROJECT</span></div>
+              <h3>I built my first responsive portfolio website!</h3>
+              <p>Sharing the layout, a few CSS tricks, and what I learned while building it. Happy to help beginners get started.</p>
+              <div class="post-preview code-preview"><span>HTML</span><span>CSS</span><span>Responsive design</span><div class="code-lines"><i></i><i></i><i></i><i></i></div></div>
+              <div class="post-actions"><button class="text-btn like-btn">♡ <span>24</span></button><button class="text-btn" data-goto="explore">View learning profile →</button></div>
+            </article>
+            <article class="post-card">
+              <div class="post-head"><div class="avatar orange">M</div><div><strong>Meera S.</strong><small>Canva design · Yesterday</small></div><span class="post-tag green-tag">TEACHING</span></div>
+              <h3>Free beginner session: poster design in Canva</h3>
+              <p>We will learn visual hierarchy, font pairing, and how to create a clean event poster. Beginner-friendly.</p>
+              <div class="post-preview poster-preview"><div class="poster-small">MAKE<br><b>IDEAS</b><br>VISIBLE.</div><div class="poster-caption">DESIGN<br>WORKSHOP<br><small>BEGINNER LEVEL</small></div></div>
+              <div class="post-actions"><button class="text-btn like-btn">♡ <span>38</span></button><button class="text-btn" data-goto="explore">See available teachers →</button></div>
+            </article>
+          </div>
+          <aside class="right-column">
+            <div class="panel-card">
+              <div class="panel-title"><h3>Available teachers</h3><span class="live-dot">● LIVE</span></div>
+              <div id="home-teachers"></div>
+              <button class="outline-btn full" data-goto="explore">See all teachers</button>
+            </div>
+            <div class="panel-card loop-tip"><div class="tip-icon">✦</div><strong>How the loop works</strong><p>Learn a skill today. Share a skill tomorrow. Help knowledge travel further.</p><div class="loop-steps"><span>01 Learn</span><span>02 Practice</span><span>03 Teach</span></div></div>
+          </aside>
+        </div>
+      </section>
+
+      <section id="page-explore" class="page">
+        <div class="intro-row"><div><h2>Find your next skill partner</h2><p>Search people by skill, level, language and compatible time.</p></div><div class="availability-note">◷ Your demo availability: <b>Weekdays · 5–7 PM</b></div></div>
+        <div class="search-bar"><span>⌕</span><input id="skill-search" placeholder="Search skills — e.g. Python, editing, design..." /><select id="level-filter"><option value="all">All levels</option><option>Beginner</option><option>Intermediate</option><option>Advanced</option></select></div>
+        <div class="filter-row"><button class="filter-chip active" data-filter="all">All skills</button><button class="filter-chip" data-filter="Technology">Technology</button><button class="filter-chip" data-filter="Design">Design</button><button class="filter-chip" data-filter="Academics">Academics</button><button class="filter-chip" data-filter="Communication">Communication</button></div>
+        <div id="teacher-grid" class="teacher-grid"></div>
+      </section>
+
+      <section id="page-loop" class="page">
+        <div class="intro-row"><div><h2>Your connections</h2><p>Manage requests and continue your learning sessions.</p></div><span class="status-pill">DEMO WORKSPACE</span></div>
+        <div class="request-layout">
+          <div class="panel-card"><div class="panel-title"><h3>Incoming requests</h3><span class="count-pill" id="incoming-count">2 pending</span></div><div id="incoming-requests"></div></div>
+          <div class="panel-card"><div class="panel-title"><h3>Your connection timeline</h3><span class="status-pill">LEARNING JOURNEY</span></div><div id="active-loops" class="connection-timeline"></div></div>
+        </div>
+        <div class="panel-card roadmap-panel"><div class="panel-title"><div><h3>AI-assisted roadmap preview</h3><p>Teacher-approved learning plan · Example: Python basics</p></div><span class="status-pill">4 STEPS</span></div><div class="roadmap"><div class="road-step done"><span>✓</span><div><b>1. Setup and first program</b><small>Install tools · print() · variables</small></div><em>Completed</em></div><div class="road-step current"><span>2</span><div><b>2. Conditions and loops</b><small>if / else · for · while · small exercises</small></div><em>Next</em></div><div class="road-step"><span>3</span><div><b>3. Lists and functions</b><small>Organise data · write reusable code</small></div></div><div class="road-step"><span>4</span><div><b>4. Mini project</b><small>Build a simple quiz application</small></div></div></div></div>
+      </section>
+
+      <section id="page-rank" class="page">
+        <div class="rank-hero"><div><p class="eyebrow light">DEMO HIGH SCHOOL COMMUNITY</p><h2>Skills are better<br>when shared.</h2><p>Recognising helpful learning, teaching and consistency — not just popularity.</p></div><div class="rank-symbol">♛</div></div>
+        <div class="rank-tabs"><button class="rank-tab active">Skill Stack</button><button class="rank-tab">Best Mentor</button><button class="rank-tab">Active Learner</button><button class="rank-tab">Community Helper</button></div>
+        <div class="panel-card"><div class="panel-title"><h3>Community Skill Stack</h3><span class="status-pill">THIS MONTH</span></div><div id="leaderboard"></div><p class="privacy-note">Demo data only. In the real app, rankings use verified learning and teaching milestones, not self-claimed skills.</p></div>
+      </section>
+
+      <section id="page-profile" class="page">
+        <div class="profile-hero">
+          <div class="profile-avatar" id="profile-avatar">S</div>
+          <div><p class="eyebrow">MY SKILL IDENTITY</p><h2 id="profile-name">Student Demo</h2>
+            <p id="profile-meta">Demo High School · Grade 10 · English, Tamil</p>
+            <span class="status-pill" id="profile-completion">PROFILE 80% COMPLETE</span>
+          </div>
+          <button class="outline-btn" id="edit-profile-btn">Edit profile</button>
+        </div>
+        <div class="profile-grid">
+          <div class="panel-card"><h3>Skills I can teach</h3><div class="skill-tags" id="teach-tags"></div><button class="outline-btn" id="add-teach-btn">+ Add a skill</button></div>
+          <div class="panel-card"><h3>Skills I want to learn</h3><div class="skill-tags blue-tags" id="learn-tags"></div><button class="outline-btn" id="add-learn-btn">+ Add a goal</button></div>
+          <div class="panel-card"><h3>My availability</h3><p class="muted" id="availability-label">Weekdays · 5:00 PM – 7:00 PM</p><p class="privacy-note">Your exact schedule stays private. Matches only see suggested meeting slots.</p><button class="outline-btn" id="availability-btn">Update availability</button></div>
+          <div class="panel-card"><h3>My learning impact</h3><div class="stats"><div><b id="skills-count">3</b><small>Skills explored</small></div><div><b id="sessions-count">2</b><small>Sessions joined</small></div><div><b id="shared-count">1</b><small>Skills shared</small></div></div><div class="xp-track"><div><b id="xp-label">Level 2 · Skill Explorer</b><span id="xp-value">120 / 200 XP</span></div><div class="xp-bar"><i id="xp-fill"></i></div></div></div>
+        </div>
+        <div class="panel-card achievement-panel"><div class="panel-title"><h3>My achievements</h3><span class="status-pill">GROW AS YOU GO</span></div><div class="achievement-row" id="achievement-row"></div></div>
+      </section>
+      <footer>INFINITE SKILL LOOP <span>·</span> Prototype demo — fictional users and sample data</footer>
+    </main>
+  </div>
+
+  <div id="modal-backdrop" class="modal-backdrop hidden">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      <button class="modal-close" id="modal-close">×</button>
+      <div class="eyebrow">CONNECTION REQUEST</div><h2 id="modal-title">Connect with a teacher</h2><div id="modal-person" class="modal-person"></div>
+      <p class="modal-question">How would you like to connect?</p>
+      <button class="choice-card" data-choice="mutual"><span class="choice-icon">⇄</span><span><b>Mutual skill exchange</b><small>I'll teach a skill in return.</small></span><span class="choice-arrow">→</span></button>
+      <button class="choice-card" data-choice="teach"><span class="choice-icon">✦</span><span><b>Teach me only</b><small>I'd like to learn without offering an exchange.</small></span><span class="choice-arrow">→</span></button>
+      <button class="choice-card decline" data-choice="decline"><span class="choice-icon">×</span><span><b>Cancel</b><small>Go back without sending a request.</small></span></button>
+      <p class="modal-foot">You can agree on a time and learning plan after the request is accepted.</p>
+    </div>
+  </div>
+<div id="auth-gate" class="auth-gate">
+    <div class="auth-card">
+      <div class="brand-mark">∞</div><p class="eyebrow">YOUR STUDENT SKILL NETWORK</p>
+      <h1>Welcome to <span>Infinite Skill Loop</span></h1>
+      <p class="auth-sub">Learn. Teach. Connect. Repeat.</p>
+      <div class="auth-tabs"><button class="auth-tab active" data-auth="signup">Create account</button><button class="auth-tab" data-auth="login">Log in</button></div>
+      <form id="auth-form">
+        <label>Full name<input name="name" id="auth-name" placeholder="Your name" required></label>
+        <label>Email<input name="email" id="auth-email" type="email" placeholder="you@example.com" required></label>
+        <label>Password<input name="password" id="auth-password" type="password" minlength="6" placeholder="At least 6 characters" required></label>
+        <div id="auth-extra"><label>School / College<input name="institution" id="auth-institution" placeholder="Institution name" required></label><label>Class / Year<input name="grade" id="auth-grade" placeholder="e.g. Grade 10" required></label></div>
+        <button class="primary-btn auth-submit" type="submit" id="auth-submit">Create my account →</button>
+      </form>
+      <p class="privacy-note">Demo storage: accounts and profile data are saved in this browser's local database (IndexedDB). This is not a live cloud account system.</p>
+      <p id="auth-error" class="auth-error"></p>
+    </div>
+  </div>
+  <div id="profile-modal" class="modal-backdrop hidden">
+    <div class="modal profile-edit-modal" role="dialog" aria-modal="true">
+      <button class="modal-close" id="profile-modal-close">×</button>
+      <div class="eyebrow">PERSONALISE YOUR LOOP</div><h2 id="profile-modal-title">Edit profile</h2>
+      <form id="profile-edit-form">
+        <label>Full name<input id="edit-name" required></label>
+        <label>School / College<input id="edit-institution" required></label>
+        <label>Class / Year<input id="edit-grade" required></label>
+        <label>Languages<input id="edit-languages" placeholder="English, Tamil"></label>
+        <button class="primary-btn" type="submit">Save changes</button>
+      </form>
+    </div>
+  </div>
+  <div id="quick-modal" class="modal-backdrop hidden">
+    <div class="modal"><button class="modal-close" id="quick-modal-close">×</button><div class="eyebrow">UPDATE YOUR SKILL IDENTITY</div><h2 id="quick-title">Add a skill</h2>
+      <form id="quick-form"><label id="quick-label">Skill name<input id="quick-input" required placeholder="e.g. Python"></label><button class="primary-btn" type="submit">Save</button></form>
+    </div>
+  </div>
+  <div id="auth-user-menu" class="auth-user-menu hidden"><span id="signed-in-label"></span><button id="logout-btn">Log out</button></div>
+    <div id="toast" class="toast"></div>
+  <script src="app.js"></script>
+  <script>
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", () => {
+        navigator.serviceWorker.register("./service-worker.js").catch(err => {
+          console.warn("PWA offline support could not be registered:", err);
+        });
+      });
+    }
+    let deferredInstallPrompt = null;
+    window.addEventListener("beforeinstallprompt", event => {
+      event.preventDefault();
+      deferredInstallPrompt = event;
+      const installButton = document.getElementById("pwa-install-button");
+      if (installButton) installButton.hidden = false;
+    });
+    window.addEventListener("appinstalled", () => {
+      const installButton = document.getElementById("pwa-install-button");
+      if (installButton) installButton.hidden = true;
+      deferredInstallPrompt = null;
+    });
+    window.addEventListener("DOMContentLoaded", () => {
+      const installButton = document.getElementById("pwa-install-button");
+      if (installButton) installButton.addEventListener("click", async () => {
+        if (!deferredInstallPrompt) return;
+        deferredInstallPrompt.prompt();
+        await deferredInstallPrompt.userChoice;
+        deferredInstallPrompt = null;
+        installButton.hidden = true;
+      });
+    });
+  </script>
+</body>
+</html>
