@@ -37,3 +37,11 @@ refresh the site in Chrome; the service worker cache should update on the next l
 While signed in, use the **Account** button near the bottom-right account bar to update
 the email and password stored in this browser's IndexedDB. This is local demo storage,
 not a secure production authentication system.
+
+
+## Demo login bypass
+The login form now accepts any syntactically valid email and non-empty password.
+If the email has no local account yet, a demo account is created automatically.
+This is only for testing the prototype; it is not authentication and must not be
+used for real student accounts or private data. Restore proper authentication
+before public production use.

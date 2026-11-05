@@ -129,7 +129,15 @@ $("#auth-form").addEventListener("submit",async e=>{
    const account={email,password,name:$("#auth-name").value.trim(),institution:$("#auth-institution").value.trim(),grade:$("#auth-grade").value.trim()};
    await dbRequest("accounts","readwrite","put",account);profileData={...profileData,name:account.name,institution:account.institution,grade:account.grade};await dbRequest("profiles","readwrite","put",{email,...profileData});await enterApp(account);
   }else{
-   const account=await dbRequest("accounts","readonly","get",email);if(!account||account.password!==password){$("#auth-error").textContent="Email or password is incorrect.";return}await enterApp(account);
+   // DEMO MODE: allow entry when the required login fields are filled.
+   // This intentionally skips password verification and is NOT secure authentication.
+   let account=await dbRequest("accounts","readonly","get",email);
+   if(!account){
+     const guessedName=email.split("@")[0].replace(/[._-]+/g," ").replace(/\\b\\w/g,c=>c.toUpperCase());
+     account={email,password,name:guessedName||"Student",institution:"Demo Institution",grade:"Student"};
+     await dbRequest("accounts","readwrite","put",account);
+   }
+   await enterApp(account);
   }
  }catch(err){$("#auth-error").textContent="Could not access local database. Try a modern browser.";}
 });
