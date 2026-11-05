@@ -154,3 +154,39 @@ $("#availability-btn").addEventListener("click",()=>{
 });
 $("#logout-btn").addEventListener("click",()=>{currentUser=null;$("#auth-gate").classList.remove("hidden");$("#auth-user-menu").classList.add("hidden");$("#auth-form").reset();authSetMode("login");});
 (async()=>{try{db=await openLocalDB();}catch(e){db=null;}authSetMode("signup");})();
+
+
+// Local demo account settings: update the IndexedDB account key and linked profile.
+$("#account-settings-btn").addEventListener("click",()=>{
+ if(!currentUser)return;
+ $("#account-new-email").value=currentUser.email;
+ $("#account-new-password").value="";
+ $("#account-error").textContent="";
+ $("#account-modal").classList.remove("hidden");
+});
+$("#account-modal-close").addEventListener("click",()=>$("#account-modal").classList.add("hidden"));
+$("#account-edit-form").addEventListener("submit",async e=>{
+ e.preventDefault();
+ if(!currentUser||!db)return;
+ const oldEmail=currentUser.email;
+ const newEmail=$("#account-new-email").value.trim().toLowerCase();
+ const newPassword=$("#account-new-password").value;
+ try{
+   const duplicate=await dbRequest("accounts","readonly","get",newEmail);
+   if(duplicate&&newEmail!==oldEmail){$("#account-error").textContent="That email is already registered in this browser.";return;}
+   const updated={...currentUser,email:newEmail,password:newPassword};
+   await dbRequest("accounts","readwrite","put",updated);
+   if(newEmail!==oldEmail){
+     const oldProfile=await dbRequest("profiles","readonly","get",oldEmail);
+     if(oldProfile){
+       await dbRequest("profiles","readwrite","delete",oldEmail);
+       await dbRequest("profiles","readwrite","put",{...oldProfile,email:newEmail});
+     }
+     await dbRequest("accounts","readwrite","delete",oldEmail);
+   }
+   currentUser=updated;
+   $("#signed-in-label").textContent=`Signed in: ${updated.name}`;
+   $("#account-modal").classList.add("hidden");
+   toast("Login details updated on this device.");
+ }catch(err){$("#account-error").textContent="Could not update account details. Please try again.";}
+});

@@ -80,3 +80,73 @@
   .teacher-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
   .content-grid{grid-template-columns:minmax(0,1.4fr) minmax(230px,1fr)}
 }
+
+
+/* Mobile navigation visibility and safe-area fixes */
+@media(max-width:760px){
+  .sidebar{
+    position:fixed!important;
+    inset:auto 0 0 0!important;
+    width:100%!important;
+    height:calc(66px + env(safe-area-inset-bottom))!important;
+    padding:4px 6px calc(4px + env(safe-area-inset-bottom))!important;
+    display:block!important;
+    z-index:50!important;
+    background:#fff!important;
+  }
+  .sidebar nav{
+    display:grid!important;
+    grid-template-columns:repeat(5,minmax(0,1fr))!important;
+    gap:2px!important;
+    height:62px!important;
+    margin:0!important;
+    align-items:center!important;
+  }
+  .sidebar nav .nav-btn{
+    display:flex!important;
+    flex-direction:column!important;
+    align-items:center!important;
+    justify-content:center!important;
+    gap:3px!important;
+    width:100%!important;
+    min-width:0!important;
+    height:56px!important;
+    padding:4px 1px!important;
+    font-size:19px!important;
+    line-height:1!important;
+    position:relative!important;
+  }
+  .sidebar nav .nav-btn span{
+    display:block!important;
+    font-size:9px!important;
+    line-height:1.1!important;
+    white-space:nowrap!important;
+  }
+  .sidebar nav .nav-btn .nav-count{
+    position:absolute!important;
+    top:1px!important;
+    right:calc(50% - 24px)!important;
+    margin:0!important;
+    font-size:8px!important;
+    line-height:1.2!important;
+    padding:1px 5px!important;
+  }
+  .auth-user-menu{
+    bottom:calc(74px + env(safe-area-inset-bottom))!important;
+    right:8px!important;
+    left:8px!important;
+    justify-content:space-between!important;
+    z-index:60!important;
+  }
+  .main{
+    margin:0!important;
+    width:100%!important;
+    padding:16px 13px calc(92px + env(safe-area-inset-bottom))!important;
+    max-width:none!important;
+  }
+}
+@media(max-width:380px){
+  .sidebar nav .nav-btn span{font-size:8px!important}
+  .auth-user-menu{font-size:10px!important;gap:5px!important}
+  .auth-user-menu button{padding:6px 7px!important}
+}

@@ -26,3 +26,14 @@ Then open `http://localhost:8000` on the same computer. For phone installation, 
 - Do not use real passwords or sensitive personal information.
 - Offline caching covers the app shell; some Google Fonts and any future network features need internet.
 - A real multi-user service needs secure authentication, a cloud database, server-side access rules, moderation, and privacy safeguards.
+
+
+## Updating an existing deployment
+After replacing files in GitHub, commit the changes and wait for GitHub Pages to redeploy.
+On the phone, close the installed PWA completely and reopen it. If old styling remains,
+refresh the site in Chrome; the service worker cache should update on the next load.
+
+## Demo account correction
+While signed in, use the **Account** button near the bottom-right account bar to update
+the email and password stored in this browser's IndexedDB. This is local demo storage,
+not a secure production authentication system.

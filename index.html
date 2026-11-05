@@ -169,7 +169,20 @@
       <form id="quick-form"><label id="quick-label">Skill name<input id="quick-input" required placeholder="e.g. Python"></label><button class="primary-btn" type="submit">Save</button></form>
     </div>
   </div>
-  <div id="auth-user-menu" class="auth-user-menu hidden"><span id="signed-in-label"></span><button id="logout-btn">Log out</button></div>
+  <div id="auth-user-menu" class="auth-user-menu hidden"><span id="signed-in-label"></span><button id="account-settings-btn" type="button">Account</button><button id="logout-btn">Log out</button></div>
+  <div id="account-modal" class="modal-backdrop hidden">
+    <div class="modal profile-edit-modal" role="dialog" aria-modal="true">
+      <button class="modal-close" id="account-modal-close" type="button">×</button>
+      <div class="eyebrow">LOCAL DEMO ACCOUNT</div><h2>Change login details</h2>
+      <form id="account-edit-form">
+        <label>Email<input id="account-new-email" type="email" required></label>
+        <label>New password<input id="account-new-password" type="password" minlength="6" placeholder="At least 6 characters" required></label>
+        <button class="primary-btn" type="submit">Save login details</button>
+      </form>
+      <p class="privacy-note">This demo stores credentials only in this browser on this device. Do not use a real or reused password.</p>
+      <p id="account-error" class="auth-error"></p>
+    </div>
+  </div>
     <div id="toast" class="toast"></div>
   <script src="app.js"></script>
   <script>
